@@ -44,4 +44,12 @@ class Curator
     return artists_array
   end
 
+  def photographs_taken_by_artists_from(country)
+    artists_from_country = artists.find_all{|artist|artist.country == country}
+    photos_from_artists = artists_from_country.inject([]) do |array, artist|
+      array << find_photographs_by_artist(artist)
+    end
+    return photos_from_artists.flatten
+  end
+
 end
