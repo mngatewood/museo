@@ -220,8 +220,9 @@ class CuratorTest < Minitest::Test
     curator.add_artist(artist_1)
     curator.add_artist(artist_2)
     curator.add_artist(artist_3)
+    diane_arbus = curator.find_artist_by_id("3")
     assert_equal 1, curator.artists_with_multiple_photographs.length
-    assert_instance_of Artist, curator.artists_with_multiple_photographs.first
+    assert_equal diane_arbus, curator.artists_with_multiple_photographs.first
   end
 
 end
