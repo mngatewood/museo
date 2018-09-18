@@ -1,7 +1,6 @@
 require 'minitest/autorun'
 require 'minitest/pride'
 require './lib/curator'
-require './lib/photograph'
 require 'pry'
 
 class CuratorTest < Minitest::Test
@@ -40,6 +39,29 @@ class CuratorTest < Minitest::Test
     assert_equal 2, curator.photographs.length
     assert_instance_of Photograph, curator.photographs.last
     assert_equal "Rue Mouffetard, Paris (Boy with Bottles)", curator.photographs.first.name
+  end
+
+  def test_it_adds_artists
+    curator = Curator.new
+    artist_1 = {
+      id: "1",
+      name: "Henri Cartier-Bresson",      
+      born: "1908",      
+      died: "2004",      
+      country: "France"      
+    }      
+    artist_2 = {
+      id: "2",      
+      name: "Ansel Adams",      
+      born: "1902",      
+      died: "1984",      
+      country: "United States"      
+    }     
+    curator.add_artist(artist_1)
+    curator.add_artist(artist_2)
+    assert_equal 2, curator.artists.length
+    assert_instance_of Artist, curator.artists.last
+    assert_equal "Henri Cartier-Bresson", curator.artists.first.name
   end
 
 end

@@ -1,4 +1,5 @@
 require './lib/photograph'
+require './lib/artist'
 
 class Curator
 
@@ -13,6 +14,11 @@ class Curator
   def add_photograph(attributes)
     photograph = Photograph.new(attributes)
     @photographs << photograph
+  end
+
+  def add_artist(attributes)
+    artist = Artist.new(attributes)
+    @artists << artist
   end
 
 end
