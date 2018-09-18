@@ -1,5 +1,6 @@
 require './lib/photograph'
 require './lib/artist'
+require './lib/file_io'
 require 'pry'
 
 class Curator
@@ -52,4 +53,19 @@ class Curator
     return photos_from_artists.flatten
   end
 
+  def load_artists(path)
+    artist_attributes = FileIO.load_artists(path)
+    artist_attributes.each do |artist_attributes|
+      add_artist(artist_attributes)
+    end
+  end
+
+  def load_photographs(path)
+    photograph_attributes = FileIO.load_photographs(path)
+    photograph_attributes.each do |photograph_attributes|
+      add_photograph(photograph_attributes)
+    end
+  end
+
+  
 end
