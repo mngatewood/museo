@@ -30,4 +30,8 @@ class Curator
     photographs.find{|photograph|photograph.id == id}
   end
 
+  def find_photographs_by_artist(artist)
+    photographs.find_all{|photograph|photograph.artist_id == artist.id}
+  end
+
 end
