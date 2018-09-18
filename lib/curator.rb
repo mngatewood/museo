@@ -34,4 +34,14 @@ class Curator
     photographs.find_all{|photograph|photograph.artist_id == artist.id}
   end
 
+  def artists_with_multiple_photographs
+    photos_by_artist = photographs.group_by{|photograph|photograph.artist_id}
+    multiple_photos = photos_by_artist.find_all do |element|
+      element.last.length > 1
+    end
+    artist_ids = multiple_photos.map{|element|element.first}
+    artists_array = artist_ids.map{|id|find_artist_by_id(id)}
+    return artists_array
+  end
+
 end
